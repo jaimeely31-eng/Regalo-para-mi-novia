@@ -1,0 +1,242 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #24001e, #60083f, #280033);
+    color: white;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+.container {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    margin: auto;
+    padding: 45px 18px;
+}
+
+h1 {
+    color: #ffb6d9;
+    font-size: clamp(28px, 6vw, 42px);
+    text-shadow: 0 0 18px #ff1493;
+}
+
+.subtitle {
+    color: #ffe0ee;
+    font-size: 19px;
+}
+
+.heart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 35px auto;
+    width: 100%;
+}
+
+/* Corazón completo, sin círculos separados */
+
+.big-heart {
+    position: relative;
+    width: min(92vw, 440px);
+    aspect-ratio: 440 / 400;
+    background: linear-gradient(135deg, #ff1744, #ff1493, #a020f0);
+
+    clip-path: polygon(
+        50% 14%,
+        43% 7%,
+        34% 3%,
+        24% 3%,
+        14% 7%,
+        6% 15%,
+        2% 25%,
+        2% 36%,
+        7% 48%,
+        16% 61%,
+        29% 75%,
+        50% 97%,
+        71% 75%,
+        84% 61%,
+        93% 48%,
+        98% 36%,
+        98% 25%,
+        94% 15%,
+        86% 7%,
+        76% 3%,
+        66% 3%,
+        57% 7%
+    );
+
+    animation: latido 1.5s ease-in-out infinite;
+}
+
+.heart-words {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 55px 38px 75px;
+}
+
+.heart-words span {
+    font-size: clamp(9px, 2.7vw, 13px);
+    font-weight: bold;
+    color: white;
+    padding: 4px 6px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.14);
+    text-shadow: 0 0 5px white;
+    animation: brillo 2s ease-in-out infinite alternate;
+}
+
+.heart-words span:nth-child(2n) {
+    animation-delay: 0.4s;
+}
+
+.heart-words span:nth-child(3n) {
+    animation-delay: 0.8s;
+}
+
+@keyframes latido {
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    20% {
+        transform: scale(1.05);
+    }
+
+    40% {
+        transform: scale(1);
+    }
+
+    60% {
+        transform: scale(1.03);
+    }
+}
+
+@keyframes brillo {
+    from {
+        opacity: 0.75;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+h2 {
+    color: #ff99cc;
+    text-shadow: 0 0 12px #ff1493;
+}
+
+.message {
+    font-size: 19px;
+    line-height: 1.7;
+    color: #ffe0ee;
+}
+
+button {
+    margin-top: 22px;
+    padding: 15px 27px;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(45deg, #ff1744, #d42fff);
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 22px #ff1493;
+    transition: transform 0.3s;
+}
+
+button:hover {
+    transform: scale(1.07);
+}
+
+.letter {
+    display: none;
+    max-width: 680px;
+    margin: 30px auto;
+    padding: 25px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid #ff69b4;
+    line-height: 1.8;
+    color: #ffe6f2;
+}
+
+.letter.show {
+    display: block;
+    animation: aparecer 0.7s ease;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+footer {
+    margin-top: 45px;
+    color: #ffb6d9;
+}
+
+/* Corazones flotando */
+
+#backgroundHearts {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.floating-heart {
+    position: absolute;
+    bottom: -40px;
+    animation: flotar linear forwards;
+}
+
+@keyframes flotar {
+    from {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.8;
+    }
+
+    to {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .heart-words {
+        gap: 3px;
+        padding: 45px 25px 65px;
+    }
+
+    .heart-words span {
+        padding: 3px 4px;
+        font-size: 10px;
+    }
+}
